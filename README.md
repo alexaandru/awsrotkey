@@ -19,7 +19,8 @@ The tool is supposed to _"work out of the box"_ and for that a few assumptions a
 If any of them is invalidated you should NOT be using this tool.
 
 1. You are using shared profiles;
-2. You are NOT using multiple keys.
+2. You are NOT using multiple keys for the account you want rotated (you can certainly
+   use as many shared profile as you want to).
 
 As long as you use a single key and you want it rotated this tool will work just fine.
 
