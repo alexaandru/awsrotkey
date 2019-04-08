@@ -20,7 +20,7 @@ If any of them is invalidated you should NOT be using this tool.
 
 1. You are using named profiles;
 2. You are NOT using multiple keys for the account you want rotated (you can certainly
-   use as many named profile as you want to).
+   use as many named profiles as you want to).
 
 As long as you use a single key and you want it rotated this tool will work just fine.
 
