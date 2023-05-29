@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/iam"
 	"github.com/aws/aws-sdk-go/service/sts"
-	"github.com/pkg/errors"
 )
 
 // Key rotates the key associated with profile, as follows:
@@ -38,7 +37,7 @@ func Key(profile string, dryMode bool) error {
 	stsc := sts.New(sess)
 	respGetCallerIdentity, err := stsc.GetCallerIdentity(&sts.GetCallerIdentityInput{})
 	if err != nil {
-		return errors.Wrap(err, "unable to get caller id (is the key disabled?)")
+		return fmt.Errorf("unable to get caller id (is the key disabled?): %w", err)
 	}
 
 	fmt.Println("Your user arn is:", *respGetCallerIdentity.Arn)
@@ -74,6 +73,7 @@ func Key(profile string, dryMode bool) error {
 		fmt.Println("Pretending to update credentials file...")
 		fmt.Println("Pretending to delete current key...")
 		fmt.Println("All good, pretending worked.")
+
 		return nil
 	}
 

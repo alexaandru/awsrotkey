@@ -1,6 +1,7 @@
 module github.com/alexaandru/awsrotkey
 
-require (
-	github.com/aws/aws-sdk-go v1.17.4
-	github.com/pkg/errors v0.8.1
-)
+go 1.20
+
+require github.com/aws/aws-sdk-go v1.44.271
+
+require github.com/jmespath/go-jmespath v0.4.0 // indirect
