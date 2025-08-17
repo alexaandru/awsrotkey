@@ -4,9 +4,8 @@ Refactored from https://github.com/Fullscreen/aws-rotate-key
 
 The credit for the original idea and implementation belongs to them.
 
-This tool **WILL REMOVE** all keys associated with your account (as determined from the profile)
-and replace them with a NEW key. No deactivation/no cluttering with old/unused keys. You've
-been warned.
+This tool **WILL REMOVE** all keys associated with the given profile and replace them with
+a single, NEW key. No deactivation/no cluttering with old/unused keys. You've been warned.
 
 **DISCLAIMER: Use this tool at your own risk.** If you use the AWS key for things other than
 the aws cli (you use it for services/web apps/etc.) then this is probably not the tool you
@@ -32,8 +31,5 @@ details see `./awsrotkey -h`.
 ## Install
 
 ```
-go get -u github.com/alexaandru/awsrotkey
+go install github.com/alexaandru/awsrotkey@latest
 ```
-
-No binaries provided, but you do get a free advice: don't install binaries from untrusted sources
-even if they are provided :-) Cheers!

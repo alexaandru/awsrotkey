@@ -2,13 +2,13 @@ package rotate
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"os/user"
 	"path/filepath"
 	"regexp"
 
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/service/iam"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/iam"
 )
 
 func setup(profile string) (credsPath string, err error) {
@@ -26,8 +26,8 @@ func setup(profile string) (credsPath string, err error) {
 	return
 }
 
-func updateCredentialsFile(credsPath string, oldKey credentials.Value, newKey *iam.CreateAccessKeyOutput) error {
-	content, err := ioutil.ReadFile(credsPath)
+func updateCredentialsFile(credsPath string, oldKey aws.Credentials, newKey *iam.CreateAccessKeyOutput) error {
+	content, err := os.ReadFile(credsPath)
 	if err != nil {
 		return err
 	}
@@ -52,7 +52,7 @@ func updateCredentialsFile(credsPath string, oldKey credentials.Value, newKey *i
 
 	content = re2.ReplaceAll(content, []byte(`aws_secret_access_key = `+*newKey.AccessKey.SecretAccessKey))
 
-	if err = ioutil.WriteFile(credsPath, content, 0600); err != nil {
+	if err = os.WriteFile(credsPath, content, 0o600); err != nil {
 		return err
 	}
 
